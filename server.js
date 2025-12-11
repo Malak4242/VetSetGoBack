@@ -8,7 +8,7 @@ const app = express();
 connectDB();
 
 app.use(cors({
-    origin: 'http://localhost:5176',
+    origin: ['http://localhost:5173','https://vetsetgo.vercel.app/'],
     credentials: true
 }));
 app.use(express.json());
