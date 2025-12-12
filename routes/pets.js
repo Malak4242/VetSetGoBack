@@ -30,7 +30,6 @@ const upload = multer({ storage });
 // =======================
 // Serve uploaded images statically
 // =======================
-router.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 
 // =======================
 // POST /api/pets — Create a new pet
