@@ -1,24 +1,21 @@
-// server.js - UPDATED VERSION
+// server.js
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const connectDB = require('./config/db');
 
 const app = express();
-// connectDB();
 
+// FIXED CORS
 app.use(cors({
   origin: [
-    'http://localhost:5175',
+    'http://localhost:5175',   // <-- remove trailing slash
     'https://vetsetgo.vercel.app',
     'https://vet-set-go2-x42r.vercel.app'
-  ],
-  credentials: true
+  ]
 }));
+
 app.use(express.json());
-
-
-
 
 // ============================================
 // ROUTES

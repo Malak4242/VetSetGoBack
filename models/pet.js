@@ -9,6 +9,7 @@ const PetSchema = new mongoose.Schema({
   gender: { type: String, enum: ['male', 'female'] },
   notes: String,
   owner: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+  img: { type: String }, // <-- Add this line
   createdAt: { type: Date, default: Date.now }
 });
 
