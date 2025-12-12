@@ -13,6 +13,11 @@ const HospitalSchema = new mongoose.Schema({
     type: String, 
     required: true 
   },
+  // In hospital model
+location: {
+  lat: { type: Number },
+  lng: { type: Number }
+},
   email: { 
     type: String, 
     required: true 

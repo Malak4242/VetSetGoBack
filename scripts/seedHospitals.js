@@ -23,6 +23,7 @@ const sampleHospitals = [
     address: "123 Main Street, Cairo, Egypt",
     phone: "+20 2 1234 5678",
     email: "info@happypaws.com",
+      location: { lat: 30.0444, lng: 31.2357 },
     specialties: ["General Care", "Surgery", "Dental", "Vaccination"],
     workingHours: {
       monday: { open: "09:00", close: "18:00" },
