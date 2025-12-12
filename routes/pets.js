@@ -1,15 +1,13 @@
-// routes/pets.js
 const express = require('express');
 const router = express.Router();
 const auth = require('../middleware/auth');
 const Pet = require('../models/pet');
 
-// POST /api/pets — Create a new pet for the logged-in user
+// POST /api/pets — Create a new pet
 router.post('/', auth, async (req, res) => {
   try {
     const { name, type, breed, age, gender, notes } = req.body;
 
-    // Basic validation
     if (!name || !type) {
       return res.status(400).json({ msg: 'Name and Type are required' });
     }
@@ -32,11 +30,12 @@ router.post('/', auth, async (req, res) => {
   }
 });
 
-// GET /api/pets — Get all pets for the logged-in user (sorted newest first)
+// GET /api/pets — Get all pets for the logged-in user
 router.get('/', auth, async (req, res) => {
   try {
     const pets = await Pet.find({ owner: req.user }).sort({ createdAt: -1 });
-    res.json(pets);
+    // Always return JSON array, even if empty
+    res.status(200).json(pets || []);
   } catch (err) {
     console.error(err.message);
     res.status(500).json({ msg: 'Server error' });

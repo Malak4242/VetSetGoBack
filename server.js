@@ -1,30 +1,36 @@
-// server.js - Railway-ready
+// server.js - UPDATED VERSION
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const connectDB = require('./config/db');
 
 const app = express();
+// connectDB();
 
-// ====================
-// MIDDLEWARE
-// ====================
 app.use(cors({
   origin: [
-    'http://localhost:5174',               // local frontend
-    'https://vetsetgo.vercel.app',        // Vercel frontend
-    'https://vet-set-go2-x42r.vercel.app' // Vercel frontend 2
+    'http://localhost:5175',
+    'https://vetsetgo.vercel.app',
+    'https://vet-set-go2-x42r.vercel.app'
   ],
   credentials: true
 }));
-
 app.use(express.json());
 
-// ====================
+
+
+
+// ============================================
 // ROUTES
-// ====================
+// ============================================
+
+// Authentication routes
 app.use('/api/auth', require('./routes/auth'));
+
+// Pet routes
 app.use('/api/pets', require('./routes/pets'));
+
+// Hospital & Appointment routes (NEW)
 app.use('/api/hospitals', require('./routes/hospitals'));
 app.use('/api/appointments', require('./routes/appointments'));
 app.use('/api/reviews', require('./routes/reviews'));
@@ -38,11 +44,7 @@ app.use((err, req, res, next) => {
   res.status(500).json({ msg: 'Something went wrong!' });
 });
 
-// ====================
-// START SERVER AFTER DB CONNECT
-// ====================
 const PORT = process.env.PORT || 5000;
-
 connectDB()
   .then(() => {
     console.log('MongoDB connected');
@@ -64,5 +66,5 @@ connectDB()
   })
   .catch(err => {
     console.error('Failed to connect to MongoDB:', err);
-    process.exit(1); // Exit if DB connection fails
+    process.exit(1);
   });
