@@ -1,17 +1,17 @@
-// server.js
+// ✅ server.js — FIXED ORDER
 require('dotenv').config();
 const express = require('express');
-// Serve uploaded files statically at root level
-
 const cors = require('cors');
 const connectDB = require('./config/db');
+const path = require('path');
 
+// 1. Create the app FIRST
 const app = express();
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-// FIXED CORS
+
+// 2. THEN use it
 app.use(cors({
   origin: [
-    'http://localhost:5175',   // <-- remove trailing slash
+    'http://localhost:5175',
     'https://vetsetgo.vercel.app',
     'https://vet-set-go2-x42r.vercel.app'
   ]
@@ -19,17 +19,13 @@ app.use(cors({
 
 app.use(express.json());
 
-// ============================================
-// ROUTES
-// ============================================
+// Serve uploads — NOW SAFE because `app` exists
+const uploadDir = path.join(__dirname, 'uploads');
+app.use('/uploads', express.static(uploadDir));
 
-// Authentication routes
+// Routes
 app.use('/api/auth', require('./routes/auth'));
-
-// Pet routes
 app.use('/api/pets', require('./routes/pets'));
-
-// Hospital & Appointment routes (NEW)
 app.use('/api/hospitals', require('./routes/hospitals'));
 app.use('/api/appointments', require('./routes/appointments'));
 app.use('/api/reviews', require('./routes/reviews'));
@@ -37,11 +33,12 @@ app.use('/api/reviews', require('./routes/reviews'));
 // Health check
 app.get('/', (req, res) => res.send('Pet Forum API - v2.0 with Appointments'));
 
-// Error handling middleware
+// Error handler
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({ msg: 'Something went wrong!' });
 });
+
 
 const PORT = process.env.PORT || 5000;
 connectDB()
