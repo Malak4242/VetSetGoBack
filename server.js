@@ -2,12 +2,12 @@
 require('dotenv').config();
 const express = require('express');
 // Serve uploaded files statically at root level
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
 const cors = require('cors');
 const connectDB = require('./config/db');
 
 const app = express();
-
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 // FIXED CORS
 app.use(cors({
   origin: [
