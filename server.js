@@ -11,7 +11,7 @@ const app = express();
 // 2. THEN use it
 app.use(cors({
  origin: [
-  'http://localhost:5174',
+  'http://localhost:5176',
   'https://vetsetgo.vercel.app',
   'https://vet-set-go2-x42r.vercel.app'
 ]
