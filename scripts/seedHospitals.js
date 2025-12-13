@@ -1,7 +1,3 @@
-// scripts/seedHospitals.js
-// Run this to populate your database with sample hospitals and doctors
-// Usage: node scripts/seedHospitals.js
-
 require('dotenv').config();
 const mongoose = require('mongoose');
 const Hospital = require('../models/hospital');
@@ -17,13 +13,14 @@ const connectDB = async () => {
   }
 };
 
+// ✅ Hospitals with real veterinary clinic photos
 const sampleHospitals = [
   {
     name: "Happy Paws Veterinary Clinic",
     address: "123 Main Street, Cairo, Egypt",
     phone: "+20 2 1234 5678",
     email: "info@happypaws.com",
-      location: { lat: 30.0444, lng: 31.2357 },
+    location: { lat: 30.0444, lng: 31.2357 },
     specialties: ["General Care", "Surgery", "Dental", "Vaccination"],
     workingHours: {
       monday: { open: "09:00", close: "18:00" },
@@ -36,6 +33,8 @@ const sampleHospitals = [
     },
     rating: 4.5,
     description: "Full-service veterinary clinic providing comprehensive care for your pets.",
+    // ✅ Veterinary clinic photo
+    image: "https://images.unsplash.com/photo-1628009368231-7bb7cfcb0def?w=800&q=80",
     isActive: true
   },
   {
@@ -43,6 +42,7 @@ const sampleHospitals = [
     address: "456 Nile Avenue, Cairo, Egypt",
     phone: "+20 2 9876 5432",
     email: "emergency@petcare.com",
+    location: { lat: 30.0500, lng: 31.2400 },
     specialties: ["Emergency", "Critical Care", "Surgery", "X-Ray"],
     workingHours: {
       monday: { open: "00:00", close: "23:59" },
@@ -55,6 +55,8 @@ const sampleHospitals = [
     },
     rating: 4.8,
     description: "24/7 emergency veterinary services with experienced specialists.",
+    // ✅ Emergency hospital photo
+    image: "https://images.unsplash.com/photo-1582562124811-c09040d0a901?w=800&q=80",
     isActive: true
   },
   {
@@ -62,6 +64,7 @@ const sampleHospitals = [
     address: "789 Garden City, Cairo, Egypt",
     phone: "+20 2 5555 7777",
     email: "contact@animalwellness.com",
+    location: { lat: 30.0350, lng: 31.2300 },
     specialties: ["General Care", "Grooming", "Nutrition", "Behavioral"],
     workingHours: {
       monday: { open: "08:00", close: "17:00" },
@@ -74,6 +77,8 @@ const sampleHospitals = [
     },
     rating: 4.3,
     description: "Holistic approach to pet healthcare and wellness.",
+    // ✅ Wellness center photo
+    image: "https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?w=800&q=80",
     isActive: true
   }
 ];
@@ -97,7 +102,6 @@ const seedDatabase = async () => {
     const doctors = [];
     
     for (const hospital of hospitals) {
-      // Create 3 doctors per hospital
       const hospitalDoctors = [
         {
           name: `Dr. Ahmed Hassan`,
