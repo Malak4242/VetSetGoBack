@@ -22,6 +22,10 @@ router.get('/', async (req, res) => {
     }
     
     const hospitals = await Hospital.find(query).sort({ rating: -1 });
+    console.log("Hospitals from DB:", hospitals.map(h => ({ 
+      name: h.name, 
+      image: h.image 
+    })));
     res.json(hospitals);
   } catch (err) {
     res.status(500).json({ msg: 'Server error' });

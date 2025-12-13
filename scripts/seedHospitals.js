@@ -33,8 +33,7 @@ const sampleHospitals = [
     },
     rating: 4.5,
     description: "Full-service veterinary clinic providing comprehensive care for your pets.",
-    // ✅ Veterinary clinic photo
-    image: "https://images.unsplash.com/photo-1628009368231-7bb7cfcb0def?w=800&q=80",
+    image:  "https://images.unsplash.com/photo-1548681528-6a5c45b66b42?w=800&q=80", // ✅ CHANGED
     isActive: true
   },
   {
@@ -55,7 +54,6 @@ const sampleHospitals = [
     },
     rating: 4.8,
     description: "24/7 emergency veterinary services with experienced specialists.",
-    // ✅ Emergency hospital photo
     image: "https://images.unsplash.com/photo-1582562124811-c09040d0a901?w=800&q=80",
     isActive: true
   },
@@ -77,7 +75,6 @@ const sampleHospitals = [
     },
     rating: 4.3,
     description: "Holistic approach to pet healthcare and wellness.",
-    // ✅ Wellness center photo
     image: "https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?w=800&q=80",
     isActive: true
   }
